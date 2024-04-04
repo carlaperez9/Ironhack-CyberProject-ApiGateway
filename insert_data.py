@@ -21,16 +21,20 @@ def insert_dummy_data():
     get_request = requests.get(api_url)
 
     print(get_request)
+    # Iterate over dummy data and send POST requests
+    for data in dummy_data:
+        api_url = "http://localhost:8080/" + data["email"]
+        input_data = { "input": data["input"]}
+    # Send a POST request to the API endpoint
+        response = requests.post(api_url, json=input_data)
 
-        # Iterate over dummy data and send POST requests
-    #     for data in dummy_data:
-
-    #         api_url = "http://localhost:8080/" + data["email"]
-    #         input_data = { "input": data["input"]}
-    #         # Send a POST request to the API endpoint
-    #         response = requests.post(api_url, json=input_data)
-
-    #         # Check if the request was successful
+    if response.status_code == 200:
+        data = response.json()
+        print("Dummy data: ", data)
+    else:
+        print("Failed to insert data. Server responded with status code:", response.status_code)
+        
+    # Check if the request was successful
     if get_request.status_code == 200:
         data = get_request.json()
         print("Data:", data)
