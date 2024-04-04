@@ -31,10 +31,11 @@ def insert_dummy_data():
     #         response = requests.post(api_url, json=input_data)
 
     #         # Check if the request was successful
-    #         if response.status_code == 200:
-    #             print("Data inserted successfully.")
-    #         else:
-    #             print("Failed to insert data. Server responded with status code:", response.status_code)
+    if get_request.status_code == 200:
+        data = get_request.json()
+        print("Data:", data)
+    else:
+        print("Failed to insert data. Server responded with status code:", get_request.status_code)
 
     # except Exception as e:
     #     print("Failed to insert data:", e)
