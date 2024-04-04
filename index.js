@@ -1,15 +1,15 @@
 const express = require('express'); 
 const mysql   = require('mysql'); 
 const app = express(); 
-// const PORT = 8080; 
+const PORT = 3306; 
 
-// app.listen(
-//     PORT, 
-//     () => console.log(`it's alive on http://localhost:${PORT}`)
-// )
+app.listen(
+    PORT, 
+    () => console.log(`it's alive on http://localhost:${PORT}`)
+)
 
 const pool = mysql.createPool({
-    host: '50.19.20.41', 
+    host: 'localhost', 
     user: 'project1', 
     password: 'Ironhack-2024-jmc!', 
     database: 'users'
