@@ -21,7 +21,7 @@ def insert_dummy_data():
         # Iterate over dummy data and send POST requests
         for data in dummy_data:
 
-            api_url = "http://localhost:3000/" + data["email"]
+            api_url = "http://localhost:8080/" + data["email"]
             input_data = { "input": data["input"]}
             # Send a POST request to the API endpoint
             response = requests.post(api_url, json=input_data)

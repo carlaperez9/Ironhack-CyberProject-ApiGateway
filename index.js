@@ -18,7 +18,7 @@ app.use( express.json() )
 //     })
 // }); 
 
-http://localhost:3306/our_endpoint
+// http://localhost:3306/our_endpoint
 
 app.post('/:email', (req, res) => { 
     const { email }   = req.params; 
