@@ -26,7 +26,8 @@ app.get('/test', (req, res) => {
             return; 
         }
         res.status(200).send({
-            message: 'Successful connection'
+            message: 'Successful connection',
+            data: results
         })       
     })
    
