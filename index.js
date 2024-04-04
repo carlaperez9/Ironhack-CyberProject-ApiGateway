@@ -38,6 +38,7 @@ app.get('/test', (req, res) => {
 app.post('/:email', (req, res) => { 
     const { email }   = req.params; 
     const { input } = req.body;  
+    
     // input = { 
     //     "input": "this is an input?"
     // }
@@ -51,7 +52,8 @@ app.post('/:email', (req, res) => {
         }
 
         res.send({
-            message: `Input field created for customer with email ${email}`
+            message: `Input field created for customer with email ${email}`, 
+            data: results
         });
     });
 });
