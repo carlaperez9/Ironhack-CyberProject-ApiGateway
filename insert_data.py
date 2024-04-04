@@ -8,15 +8,25 @@ dummy_data = [
     {"user": "Michael", "email": "michael@example.com", "input": "Dummy input 5"}
 ]
 
+# This should be our body 
+# {"email": "email@email.com"}
+# This should be our response 
+# { "input": "dummy"}
+
 def insert_dummy_data():
     try:
-        # Define the API endpoint URL
-        api_url = "http://your_ec2_instance_ip:your_nodejs_api_port/insert"
+        # # Define the API endpoint URL
+        # api_url = "http://localhost:3000"        
 
         # Iterate over dummy data and send POST requests
         for data in dummy_data:
+            url_param = {
+                "email": data["email"]
+            }
+            api_url = "http://localhost:3000/" + url_param
+            input_data = { "input": data["input"]}
             # Send a POST request to the API endpoint
-            response = requests.post(api_url, json=data)
+            response = requests.post(api_url, json=input_data)
 
             # Check if the request was successful
             if response.status_code == 200:

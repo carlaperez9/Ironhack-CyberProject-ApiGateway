@@ -1,12 +1,6 @@
 const express = require('express'); 
 const mysql   = require('mysql'); 
 const app = express(); 
-const PORT = 3306; 
-
-app.listen(
-    PORT, 
-    () => console.log(`it's alive on http://localhost:${PORT}`)
-)
 
 const pool = mysql.createPool({
     host: 'localhost', 
@@ -23,6 +17,8 @@ app.use( express.json() )
 //         size: 'large'
 //     })
 // }); 
+
+http://localhost:3306/our_endpoint
 
 app.post('/:email', (req, res) => { 
     const { email }   = req.params; 
