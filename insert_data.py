@@ -18,7 +18,7 @@ def insert_dummy_data():
         # # Define the API endpoint URL
     api_url = "http://localhost:8080/test"        
         
-    get_request = requests.get_request(api_url)
+    get_request = requests.get(api_url)
 
         # Iterate over dummy data and send POST requests
     #     for data in dummy_data:
