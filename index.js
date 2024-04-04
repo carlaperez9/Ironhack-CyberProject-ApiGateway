@@ -2,6 +2,10 @@ const express = require('express');
 const mysql   = require('mysql'); 
 const app = express(); 
 
+const server = app.listen(3000, () => {
+    console.log(`Server is running on port ${server.address().port}`);
+});
+
 const pool = mysql.createPool({
     host: 'localhost', 
     user: 'project1', 
