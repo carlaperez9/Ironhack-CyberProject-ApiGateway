@@ -20,7 +20,7 @@ def insert_dummy_data():
         
     get_request = requests.get(api_url)
 
-    
+    print(get_request)
 
         # Iterate over dummy data and send POST requests
     #     for data in dummy_data:
