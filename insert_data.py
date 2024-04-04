@@ -16,7 +16,7 @@ dummy_data = [
 def insert_dummy_data():
     # try:
         # # Define the API endpoint URL
-    api_url = "http://localhost:8000/test"        
+    api_url = "http://localhost:3000/test"        
         
     get_request = requests.get(api_url)
 
