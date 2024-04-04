@@ -1,30 +1,46 @@
 const express = require('express'); 
+const mysql   = require('mysql'); 
 const app = express(); 
-const PORT = 8080; 
+// const PORT = 8080; 
 
-app.listen(
-    PORT, 
-    () => console.log(`it's alive on http://localhost:${PORT}`)
-)
+// app.listen(
+//     PORT, 
+//     () => console.log(`it's alive on http://localhost:${PORT}`)
+// )
+
+const pool = mysql.createPool({
+    host: '50.19.20.41', 
+    user: 'project1', 
+    password: 'Ironhack-2024-jmc!', 
+    database: 'users'
+})
 
 app.use( express.json() )
  
-app.get('/tshirt', (req, res) => { 
-    res.status(200).send({
-        tshirt: 'tshirt',
-        size: 'large'
-    })
-}); 
+// app.get('/tshirt', (req, res) => { 
+//     res.status(200).send({
+//         tshirt: 'tshirt',
+//         size: 'large'
+//     })
+// }); 
 
-app.post('/tshirt/:id', (req, res) => { 
-    const { id }   = req.params; 
-    const { logo } = req.body; 
+app.post('/:email', (req, res) => { 
+    const { email }   = req.params; 
+    const { input } = req.body;  
+    // input = { 
+    //     "input": "this is an input?"
+    // }
     
-    if (!logo){ 
-        res.status(418).send({ message: 'we need a logo!' })
-    }
+    const query = `UPDATE customers SET input = ? WHERE email = ?`; 
 
-    res.send({ 
-        tshirt: `t-shirt with your ${logo} and ID of ${id}`, 
-    })
+    pool.query(query, [input, email], (error, results)=> { 
+        if (error) {
+            res.status(500).send({ message: 'Error updating input field' });
+            return;
+        }
+
+        res.send({
+            message: `Input field created for customer with email ${email}`
+        });
+    });
 });
