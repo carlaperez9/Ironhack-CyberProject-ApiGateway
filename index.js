@@ -11,12 +11,22 @@ const pool = mysql.createPool({
 
 app.use( express.json() )
  
-// app.get('/tshirt', (req, res) => { 
-//     res.status(200).send({
-//         tshirt: 'tshirt',
-//         size: 'large'
-//     })
-// }); 
+app.get('/test', (req, res) => { 
+
+    const query = `SELECT * FROM customers`; 
+
+    pool.query(query, (error, results) => { 
+
+        if(error){ 
+            res.status(500).send({message: 'Not successful'})
+            return; 
+        }
+        res.status(200).send({
+            message: 'Successful connection'
+        })       
+    })
+   
+}); 
 
 // http://localhost:3306/our_endpoint
 
