@@ -19,14 +19,16 @@ dummy_data = [
 # This should be our response 
 # { "input": "dummy"}
 
-def insert_dummy_data():
-    # try:
-        # # Define the API endpoint URL
-    api_url = "http://localhost:3000/test"        
-        
+
+def get_dummy_data(): 
+
+    api_url = "http://localhost:3000/test"
+
     get_request = requests.get(api_url)
 
     print(get_request)
+
+def insert_dummy_data():
     # Iterate over dummy data and send POST requests
     for data in dummy_data:
         api_url = "http://localhost:3000/" + data["email"]
@@ -51,4 +53,5 @@ def insert_dummy_data():
     #     print("Failed to insert data:", e)
 
 if __name__ == "__main__":
-    insert_dummy_data()
+    get_dummy_data()
+    # insert_dummy_data()
