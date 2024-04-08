@@ -58,7 +58,7 @@ def patch_dummy_data():
         api_url = "http://localhost:3000/" + data["email"]
         patch_dummy_data = { "input": data["input"]}
 
-        response = requests.post(api_url, json=patch_dummy_data)
+        response = requests.patch(api_url, json=patch_dummy_data)
 
         if response.status_code == 200:
             data = response.json()
