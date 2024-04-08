@@ -63,11 +63,7 @@ app.post('/:email', (req, res) => {
 app.patch('/:email', (req, res) => { 
     const { email } = req.params; 
     const { input } = req.body;  
-    
-    // input = { 
-    //     "input": "this is an updated input"
-    // }
-    
+
     const query = `UPDATE customers SET input = ? WHERE email = ?`; 
 
     pool.query(query, [input, email], (error, results) => { 
