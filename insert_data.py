@@ -27,7 +27,7 @@ def get_dummy_data():
         print("Data:", data)
 
         if 'emails' in data:
-            emails = data['emails']
+            emails = [item['email'] for item in data]
             print("Emails:", emails)
             return emails
         else:
