@@ -23,16 +23,14 @@ def get_dummy_data():
 
     # Check if the request was successful
     if get_request.status_code == 200:
+        list_of_emails = []
         data = get_request.json()
         print("Data:", data)
 
-        if 'emails' in data:
-            emails = [item['email'] for item in data]
-            print("Emails:", emails)
-            return emails
-        else:
-            print("No emails found in the data.")
-            return []
+        for user_data in data:
+            email = user_data['email']
+            list_of_emails.append(email)
+        return list_of_emails
     else:
         print("Failed to insert data. Server responded with status code:", get_request.status_code)
         return []
