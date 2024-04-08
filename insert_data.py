@@ -1,4 +1,5 @@
 import requests
+import time
 
 dummy_data = [
     {"user": "John", "email": "john@example.com", "input": "Dummy input 1"},
@@ -8,17 +9,11 @@ dummy_data = [
     {"user": "Michael", "email": "michael@example.com", "input": "Dummy input 5"}
 ]
 
-# # make a post request of this? 
-# dummy_inputs = [
-#     {"input" : " 'SELECT * FROM users' "} 
-#     # añadir inputs maliciosos 
-# ]
 
 # This should be our body 
 # {"email": "email@email.com"}
 # This should be our response 
 # { "input": "dummy"}
-
 
 def get_dummy_data(): 
 
@@ -30,10 +25,17 @@ def get_dummy_data():
     if get_request.status_code == 200:
         data = get_request.json()
         print("Data:", data)
+
+        if 'emails' in data:
+            emails = data['emails']
+            print("Emails:", emails)
+            return emails
+        else:
+            print("No emails found in the data.")
+            return []
     else:
         print("Failed to insert data. Server responded with status code:", get_request.status_code)
-    
-    print(get_request)
+        return []
 
 def insert_dummy_data():
     # Iterate over dummy data and send POST requests
@@ -52,13 +54,21 @@ def insert_dummy_data():
     # except Exception as e:
     #     print("Failed to insert data:", e)
 
-def patch_dummy_data():
+def patch_dummy_data(existing_emails):
     
-    email = "john.doe@example.com"
-    api_url = "http://localhost:3000/" + email
-    patch_dummy_data = { "input": "SELECT * from users"}
+    dummy_inputs = [
+        {"input": "SELECT * FROM users"},
+        {"input": "Test input 1"},
+        {"input": "Test input 2"},
+        {"input": "UPDATE users SET input='TEST12345' WHERE id=1"},
+        {"input": "Test input 3"}
+    ]
 
-    response = requests.patch(api_url, json=patch_dummy_data)
+    for email in existing_emails:
+        email = "john.doe@example.com"
+        api_url = "http://localhost:3000/" + email
+
+    response = requests.patch(api_url, json=dummy_inputs)
 
     if response.status_code == 200:
         data = response.json()
@@ -67,6 +77,6 @@ def patch_dummy_data():
         print("Failed to update input data for", email, response.status_code)
 
 if __name__ == "__main__":
-    get_dummy_data()
-    patch_dummy_data()
+    existing_emails = get_dummy_data()
+    patch_dummy_data(existing_emails)
     # insert_dummy_data()
