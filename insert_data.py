@@ -54,9 +54,9 @@ def insert_dummy_data():
 
 def patch_dummy_data():
     for data in dummy_data:
-        email = data["email"]
-        api_url = "http://localhost:3000/" + data["email"]
-        patch_dummy_data = { "input": data["input"]}
+        email = "john.doe@example.com"
+        api_url = "http://localhost:3000/" + email
+        patch_dummy_data = { "input": "TESTING 123"}
 
         response = requests.patch(api_url, json=patch_dummy_data)
 
