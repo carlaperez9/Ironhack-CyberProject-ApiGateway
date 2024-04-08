@@ -64,13 +64,15 @@ def patch_dummy_data(existing_emails):
 
     for email in existing_emails:
         api_url = "http://localhost:3000/" + email
-        response = requests.patch(api_url, json=dummy_inputs)
+        
+        for input in dummy_inputs:
+            response = requests.patch(api_url, json=input)
 
-        if response.status_code == 200:
-            data = response.json()
-            print("Updated input data for:", email, ":", data)
-        else:
-            print("Failed to update input data for", email, response.status_code)
+            if response.status_code == 200:
+                data = response.json()
+                print("Updated input data for:", email, ":", data)
+            else:
+                print("Failed to update input data for", email, response.status_code)
 
 if __name__ == "__main__":
     existing_emails = get_dummy_data()
