@@ -69,8 +69,8 @@ def patch_dummy_data(existing_emails):
         if response.status_code == 200:
             data = response.json()
             print("Updated input data for:", email, ":", data)
-    else:
-        print("Failed to update input data for", email, response.status_code)
+        else:
+            print("Failed to update input data for", email, response.status_code)
 
 if __name__ == "__main__":
     existing_emails = get_dummy_data()
