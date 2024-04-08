@@ -8,6 +8,12 @@ dummy_data = [
     {"user": "Michael", "email": "michael@example.com", "input": "Dummy input 5"}
 ]
 
+# # make a post request of this? 
+# dummy_inputs = [
+#     {"input" : " 'SELECT * FROM users' "} 
+#     # añadir inputs maliciosos 
+# ]
+
 # This should be our body 
 # {"email": "email@email.com"}
 # This should be our response 
