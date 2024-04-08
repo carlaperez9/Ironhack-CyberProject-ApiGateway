@@ -68,9 +68,9 @@ def patch_dummy_data(existing_emails):
         api_url = "http://localhost:3000/" + email
         response = requests.patch(api_url, json=dummy_inputs)
 
-    if response.status_code == 200:
-        data = response.json()
-        print("Updated input data for:", email, ":", data)
+        if response.status_code == 200:
+            data = response.json()
+            print("Updated input data for:", email, ":", data)
     else:
         print("Failed to update input data for", email, response.status_code)
 
