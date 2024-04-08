@@ -56,4 +56,29 @@ app.post('/:email', (req, res) => {
             data: results
         });
     });
+
+    
+});
+
+app.patch('/:email', (req, res) => { 
+    const { email } = req.params; 
+    const { input } = req.body;  
+    
+    // input = { 
+    //     "input": "this is an updated input"
+    // }
+    
+    const query = `UPDATE customers SET input = ? WHERE email = ?`; 
+
+    pool.query(query, [input, email], (error, results) => { 
+        if (error) {
+            res.status(500).send({ message: 'Error updating input field' });
+            return;
+        }
+
+        res.send({
+            message: `Input field updated for customer with email ${email}`, 
+            data: results
+        });
+})
 });

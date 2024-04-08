@@ -52,6 +52,20 @@ def insert_dummy_data():
     # except Exception as e:
     #     print("Failed to insert data:", e)
 
+def patch_dummy_data():
+    for data in dummy_data:
+        email = data["email"]
+        api_url = "http://localhost:3000/" + data["email"]
+        patch_dummy_data = { "input": data["input"]}
+
+        response = requests.post(api_url, json=patch_dummy_data)
+
+        if response.status_code == 200:
+            data = response.json()
+            print("Updated input data for:", email, ":", data)
+        else:
+            print("Failed to update input data for", email, response.status_code)
 if __name__ == "__main__":
     get_dummy_data()
+    patch_dummy_data()
     # insert_dummy_data()
