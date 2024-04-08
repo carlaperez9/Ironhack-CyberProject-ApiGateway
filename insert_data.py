@@ -24,7 +24,7 @@ def get_dummy_data():
     # Check if the request was successful
     if get_request.status_code == 200:
         list_of_emails = []
-        data = get_request.json()
+        data = get_request.json()['data']
         print("Data:", data)
 
         for user_data in data:
