@@ -9,11 +9,18 @@ dummy_data = [
     {"user": "Michael", "email": "michael@example.com", "input": "Dummy input 5"}
 ]
 
+dummy_inputs = [
+    {"input": "SELECT * FROM users"},
+    {"input": "Test input 1"},
+    {"input": "Test input 2"},
+    {"input": "UPDATE users SET input='TEST12345' WHERE id=1"},
+    {"input": "Test input 3"}
+]
 
-# This should be our body 
-# {"email": "email@email.com"}
-# This should be our response 
-# { "input": "dummy"}
+def set_intervals(dummy_inputs): 
+    for data in dummy_inputs: 
+        # send data every x seconds 
+        patch_dummy_data()
 
 def get_dummy_data(): 
 
@@ -53,16 +60,9 @@ def insert_dummy_data():
     #     print("Failed to insert data:", e)
 
 def patch_dummy_data(existing_emails):
-    
-    dummy_inputs = [
-        {"input": "SELECT * FROM users"},
-        {"input": "Test input 1"},
-        {"input": "Test input 2"},
-        {"input": "UPDATE users SET input='TEST12345' WHERE id=1"},
-        {"input": "Test input 3"}
-    ]
 
     index = 0
+
     for email in existing_emails:
         api_url = "http://localhost:3000/" + email
         response = requests.patch(api_url, json=dummy_inputs[index % len(dummy_inputs)])
@@ -73,6 +73,7 @@ def patch_dummy_data(existing_emails):
         else:
             print("Failed to update input data for", email, response.status_code)
         index += 1
+        time.sleep(3)
 
 if __name__ == "__main__":
     existing_emails = get_dummy_data()
