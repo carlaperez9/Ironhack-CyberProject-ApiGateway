@@ -11,10 +11,10 @@ dummy_data = [
 
 dummy_inputs = [
     {"input": "SELECT * FROM users"},
-    {"input": "Test input 1"},
     {"input": "Test input 2"},
-    {"input": "UPDATE users SET input='TEST12345' WHERE id=1"},
-    {"input": "Test input 3"}
+    {"input": "Test input 3"},
+    {"input": "UPDATE users SET input='TEST12345' WHERE id=2"},
+    {"input": "Test input 1"}
 ]
 
 def set_intervals(dummy_inputs): 
@@ -76,6 +76,9 @@ def patch_dummy_data(existing_emails):
         time.sleep(3)
 
 if __name__ == "__main__":
+    print("------------ PRIOR TO PATCH ------------")
     existing_emails = get_dummy_data()
     patch_dummy_data(existing_emails)
+    print("------------ AFTER PATCH --------------")
+    get_dummy_data()
     # insert_dummy_data()
