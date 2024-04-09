@@ -24,7 +24,7 @@ def set_intervals(dummy_inputs):
 
 def get_dummy_data(): 
 
-    api_url = "http://54.221.31.68:3000/test"
+    api_url = "http://localhost:3000/test"
 
     get_request = requests.get(api_url)
 
@@ -45,7 +45,7 @@ def get_dummy_data():
 def insert_dummy_data():
     # Iterate over dummy data and send POST requests
     for data in dummy_data:
-        api_url = "http://54.221.31.68:3000/" + data["email"]
+        api_url = "http://localhost:3000/" + data["email"]
         input_data = { "input": data["input"]}
     # Send a POST request to the API endpoint
         response = requests.post(api_url, json=input_data)
@@ -64,7 +64,7 @@ def patch_dummy_data(existing_emails):
     index = 0
 
     for email in existing_emails:
-        api_url = "http://54.221.31.68:3000/" + email
+        api_url = "http://localhost:3000/" + email
         response = requests.patch(api_url, json=dummy_inputs[index % len(dummy_inputs)])
         
         if response.status_code == 200:
